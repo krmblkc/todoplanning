@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>İş Programı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .developer-tasks {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>İş Programı</h1>
+
+    {% for week, developers in schedule %}
+        <h2>Hafta {{ week + 1 }}</h2>
+        <ul>
+            {% for developer, tasks in developers %}
+                <li>
+                    <strong>{{ developer }}:</strong>
+                    <ul class="developer-tasks">
+                        {% for task in tasks %}
+                            <li>İş ID: {{ task.getId() }}, Süre: {{ task.getDuration() }} saat, Zorluk: {{ task.getDifficulty() }}x</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <p>Toplam süre: {{ weeks }} hafta</p>
+</body>
+</html>
